@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>LOOP Studio · Live control</title>
+    <style>
+      *{box-sizing:border-box}body{margin:0;background:#f6f5f0;color:#19352c;font:16px/1.5 system-ui,sans-serif}main{width:min(100% - 32px,720px);margin:8vh auto;background:white;padding:36px;border-radius:12px;box-shadow:0 14px 50px #183a3212}a{color:#49745d}h1{font-size:32px;margin:8px 0}.eyebrow{font-size:12px;letter-spacing:.12em;color:#758a7c;font-weight:700}.row{display:flex;align-items:center;justify-content:space-between;gap:22px;margin:30px 0;padding:22px;background:#f4f6f2;border-radius:10px}.switch{width:76px;height:42px;border:0;border-radius:30px;background:#aab4ac;padding:4px;cursor:pointer;transition:.2s}.switch:after{content:"";display:block;width:34px;height:34px;border-radius:50%;background:white;transition:.2s;box-shadow:0 1px 5px #0003}.switch[aria-checked=true]{background:#28744e}.switch[aria-checked=true]:after{transform:translateX(34px)}.switch:disabled{opacity:.5;cursor:wait}#status{font-weight:700}.state{display:inline-block;padding:5px 10px;border-radius:20px;background:#e8ece8;font-size:12px;text-transform:uppercase}.state.live{background:#fee3e2;color:#aa2825}.field{display:flex;gap:10px}.field input{flex:1;min-width:0;padding:12px;border:1px solid #d6ddd7;border-radius:6px;font:inherit}.field button{padding:11px 15px;border:0;border-radius:6px;background:#193d31;color:white;font:inherit;cursor:pointer}.hint,#message{font-size:13px;color:#69776e}#message.error{color:#b12a27}.back{margin-top:24px;display:inline-block}@media(max-width:520px){main{padding:24px}.row{padding:16px}}
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">LOOP STUDIO · BROADCAST CONTROL</div>
+      <h1>Recorded video to live</h1>
+      <p>Turn on the switch to loop the Studio source video into the IVS live channel. Turn it off to return viewers to the CloudFront replay.</p>
+      <div class="row">
+        <div><span class="state" id="state">Connecting</span><p id="status">Checking broadcast status…</p></div>
+        <button class="switch" id="liveSwitch" type="button" role="switch" aria-checked="false" aria-label="Go live" disabled></button>
+      </div>
+      <label class="eyebrow" for="token">LOCAL ADMIN TOKEN</label>
+      <div class="field"><input id="token" type="password" autocomplete="current-password" placeholder="Paste LOOP_ADMIN_TOKEN from .env.local" /><button id="saveToken" type="button">Save on this tab</button></div>
+      <p class="hint">The token is kept in this tab only. The IVS stream key stays on the server.</p>
+      <p id="message" role="status"></p>
+      <a class="back" href="/">← Back to the player</a>
+    </main>
+    <script src="/apps/studio/admin.js"></script>
+  </body>
+</html>

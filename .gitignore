@@ -1,0 +1,11 @@
+.env*
+!.env.example
+!.env.local.example
+*.pem
+node_modules/
+.DS_Store
+.vercel/
+.next/
+.agents/
+/apps/web/public/
+/apps/web/.next/

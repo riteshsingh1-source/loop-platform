@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LOOP Player SDK · Page A</title>
+    <script defer src="/packages/player-sdk/dist/hls.min.js"></script>
+    <script defer src="/packages/player-sdk/dist/loop-player.js"></script>
+    <script defer src="/apps/player-demo/player-live.js"></script>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; background: #f4f4f0; color: #18201d; font: 15px/1.5 system-ui, sans-serif; }
+      main { width: min(100% - 32px, 1060px); margin: 42px auto; }
+      main { min-height: 100vh; display: grid; place-items: center; }
+      loop-player { width: min(100vw, 430px); justify-self: center; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="loop-player-mount" aria-live="polite">Connecting to LOOP video…</div>
+    </main>
+  </body>
+</html>

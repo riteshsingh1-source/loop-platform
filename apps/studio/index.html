@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>LOOP — Live shopping</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand">◉ LOOP</a>
+      <nav><a class="active">Discover</a><a>Upcoming</a><a>Replays</a><a href="/apps/studio/admin.html">Studio Admin</a></nav>
+      <button>⌕</button><button class="avatar">A</button>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <span>THE LOOP LIVE EDIT</span>
+          <h1>Good things<br />happen live.</h1>
+          <p>
+            Meet the makers, discover the details, and shop the pieces you love.
+          </p>
+          <button
+            class="light"
+            onclick="
+              document
+                .querySelector('#live')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+          >
+            Watch live →
+          </button>
+        </div>
+        <div class="art">
+          <div class="sun"></div>
+          <b>✳</b><label>● LIVE NOW · 2.4K watching</label>
+        </div>
+      </section>
+      <section class="section" id="live">
+        <small>HAPPENING NOW</small>
+        <h2>Find your next favorite</h2>
+        <div class="cards">
+          <article>
+            <div class="thumb t1">
+              <em>● LIVE</em><button onclick="openPlayer(0)">▶</button>
+            </div>
+            <h3>The art of a slower morning</h3>
+            <p>with Ananya Mehta · Home & Living</p>
+          </article>
+          <article>
+            <div class="thumb t2">
+              <em>● LIVE</em><button onclick="openPlayer(1)">▶</button>
+            </div>
+            <h3>Everyday objects, reimagined</h3>
+            <p>Studio Nō · Design</p>
+          </article>
+          <article>
+            <div class="thumb t3">
+              <em>STARTS IN 00:18:42</em
+              ><button onclick="toast('Reminder set')">＋</button>
+            </div>
+            <h3>Color, confidence & you</h3>
+            <p>with Rhea Kapoor · Beauty</p>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <small>SHOP THE MOMENT</small>
+        <h2>Picked for you</h2>
+        <div class="products">
+          <div>
+            ✿<b>Hand-thrown ceramic vase</b>
+            <p>₹2,400</p>
+            <button onclick="toast('Added to bag')">Add to bag +</button>
+          </div>
+          <div>
+            ◒<b>Everyday linen, set of 2</b>
+            <p>₹1,850</p>
+            <button onclick="toast('Added to bag')">Add to bag +</button>
+          </div>
+          <div>
+            ◉<b>Botanical face oil</b>
+            <p>₹1,200</p>
+            <button onclick="toast('Added to bag')">Add to bag +</button>
+          </div>
+        </div>
+      </section>
+      <section class="section dashboard">
+        <small>LIVE COMMERCE AT A GLANCE</small>
+        <h2>Every moment, measurable.</h2>
+        <div class="metrics">
+          <div>
+            <b>24.8k</b><span>Live viewers today</span><strong>↑ 18.6%</strong>
+          </div>
+          <div>
+            <b>4m 32s</b><span>Avg. watch time</span><strong>↑ 12.4%</strong>
+          </div>
+          <div>
+            <b>8.7%</b><span>Viewer to cart</span><strong>↑ 2.1 pts</strong>
+          </div>
+          <div>
+            <b>₹6.4L</b><span>Revenue attributed</span><strong>Today</strong>
+          </div>
+        </div>
+      </section>
+      <footer>LOOP <span>Made for moments that move you.</span></footer>
+    </main>
+    <div class="modal" id="modal">
+      <div class="player">
+        <button class="close" onclick="closePlayer()">×</button>
+        <div class="video" id="video">
+          <video
+            id="media"
+            playsinline
+            muted
+            loop
+            poster="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=1200&q=85"
+          >
+            <source
+              src="https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_25fps.mp4"
+              type="video/mp4"
+            /></video
+          ><em>● LIVE</em
+          ><button
+            class="pause"
+            onclick="this.textContent = this.textContent === 'Ⅱ' ? '▶' : 'Ⅱ'"
+          >
+            Ⅱ
+          </button>
+          <div class="controls">
+            Ⅱ　◖　 <span onclick="pip()">▣ PiP</span>　⛶
+          </div>
+        </div>
+        <aside>
+          <small>LIVE SHOPPING</small>
+          <h2 id="title"></h2>
+          <p>Discover the pieces featured in this moment.</p>
+          <div class="item">
+            ✿
+            <div>
+              <b>Hand-thrown ceramic vase</b>
+              <p>Artisan made · ₹2,400</p>
+              <button onclick="toast('Added to bag')">Add to bag</button>
+            </div>
+          </div>
+          <h3>Live chat</h3>
+          <p>✨ This is so beautiful!</p>
+          <p>Where can I get the blue one?</p>
+          <input
+            placeholder="Say something kind…"
+            onkeydown="
+              if (event.key === 'Enter') {
+                toast('Message sent');
+                this.value = '';
+              }
+            "
+          />
+        </aside>
+      </div>
+    </div>
+    <div id="toast"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

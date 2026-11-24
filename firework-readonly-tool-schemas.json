@@ -1,0 +1,1186 @@
+{
+  "captured": "2026-11-13",
+  "scope": "read-only requested",
+  "response": {
+    "id": 2,
+    "result": {
+      "tools": [
+        {
+          "name": "downloadInteractionResponses",
+          "description": "Available only after the livestream has ended.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id",
+              "interaction_id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "livestream ID"
+              },
+              "interaction_id": {
+                "type": "string",
+                "description": "interaction ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "downloadLiveStreamComments",
+          "description": "Available only after the livestream has ended.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "livestream ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "getImageDownloadUrl",
+          "description": "Returns the unsigned CDN URL of the image with format and dimensions. Pass `max_dimension` to receive a CDN rendition downscaled to fit that many pixels on the longest side (works for every format). Pass `format` (jpg, png, webp) to convert the file. `max_dimension` and `format` compose. Renditions are generated on the fly by the CDN's image-resizing service (the first generation may require a browser-like client). Requires the `images` feature.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "format": {
+                "type": "string",
+                "description": "Convert to this format (jpg, png, webp)"
+              },
+              "id": {
+                "type": "string",
+                "description": "image ID"
+              },
+              "max_dimension": {
+                "type": "integer",
+                "description": "Fit the longest side to this many pixels (16-16384, downscale only)"
+              }
+            }
+          }
+        },
+        {
+          "name": "getVideoAudioDescription",
+          "description": "Get an Audio Description of a video",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id",
+              "audio_description_id"
+            ],
+            "properties": {
+              "audio_description_id": {
+                "type": "string",
+                "description": "Audio Description ID"
+              },
+              "id": {
+                "type": "string",
+                "description": "video ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "getVideoDownloadUrl",
+          "description": "Returns a CDN URL of the video's transcoded file (the same file the business portal's download button serves) plus its format and dimensions. Requires the `content_download` feature on the business's subscription.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "video ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "getVideoDownloadUrls",
+          "description": "Resolves CDN download URLs for up to 50 videos in a single request \u2014 use this instead of calling getVideoDownloadUrl per video. Results are returned in the order the ids were given, each carrying its `id`. A video with no available source is returned with a null `download_url` rather than failing the batch. Requires the `content_download` feature on the business's subscription. Not paginated: the response is bounded by the ids you send.",
+          "annotations": {},
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "video_ids"
+            ],
+            "properties": {
+              "video_ids": {
+                "type": "array",
+                "description": "Video IDs to resolve, 1 to 50 per request",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "maxItems": 50
+              }
+            }
+          }
+        },
+        {
+          "name": "listAiCurationFeed",
+          "description": "Lists social videos the AI curation engine discovered for the channel, scored and summarized. An empty feed usually means the curation settings are not configured (updateAiCurationSettings) or no social account is connected (createAiCurationConnectUrl). Each item's `id` is the opaque handle to pass to importAiCuration; filter with `consent_status=approved` or `whitelist_only=true` to browse content that is cleared for importing. Forward-only pagination. Requires the `ai_content_curation` feature.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "channel_id"
+            ],
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`)."
+              },
+              "channel_id": {
+                "type": "string",
+                "description": "channel ID"
+              },
+              "consent_status": {
+                "type": "string",
+                "description": "Filter by creator-consent status: `approved`, `pending`, `need_review` or `denied`."
+              },
+              "external_ids": {
+                "type": "string",
+                "description": "Comma-separated platform ids to re-fetch specific feed items; requires `source`."
+              },
+              "hashtags": {
+                "type": "string",
+                "description": "Comma-separated discovery hashtags to filter by."
+              },
+              "inserted_at_begin": {
+                "type": "string",
+                "description": "Only feed items discovered at or after this time (ISO 8601 timestamp)."
+              },
+              "inserted_at_end": {
+                "type": "string",
+                "description": "Only feed items discovered at or before this time (ISO 8601 timestamp)."
+              },
+              "language": {
+                "type": "string",
+                "description": "Filter by content language."
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 50, max 100)"
+              },
+              "sort": {
+                "type": "string",
+                "description": "Feed order: `newest` (default) or `score` (best first)."
+              },
+              "source": {
+                "type": "string",
+                "description": "Filter by platform: `tiktok` or `instagram`."
+              },
+              "whitelist_only": {
+                "type": "boolean",
+                "description": "Only posts by creators on the whitelist."
+              }
+            }
+          }
+        },
+        {
+          "name": "listBaseVideos",
+          "description": "Lists undeleted BaseVideos for a channel. Use a returned `id` as `base_video_id` when creating a prerecorded livestream. `channel_id` is optional when the token resolves to a single channel. A BaseVideo may be selected while it is still transcoding; check `transcoding_status` before the scheduled start time.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "channel_id": {
+                "type": "string",
+                "description": "channel ID (optional; defaults to the business's sole channel)"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              }
+            }
+          }
+        },
+        {
+          "name": "listBusinessStores",
+          "description": "List the business's e-commerce stores",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "business_id": {
+                "type": "string",
+                "description": "business ID (optional for app tokens; defaults to the token's business)"
+              },
+              "exclude_creator_child_stores": {
+                "type": "boolean",
+                "description": "Exclude Creator child stores; retain Creator parent stores. Defaults to false. Only true enables the filter. These filters do not guarantee product-write permission or provider support."
+              },
+              "exclude_linked_stores": {
+                "type": "boolean",
+                "description": "Exclude B2B syndication Seller child stores; retain Marketplace parent stores. Defaults to false. Only true enables the filter. Ordinary Connected Commerce stores are retained."
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              }
+            }
+          }
+        },
+        {
+          "name": "listImageFolders",
+          "description": "Lists the direct children of `parent_folder_id` (omit it for the root level). Use each folder's `has_subfolders` to decide whether to expand it and `has_images` to tell whether it is empty. Pass `include_archived=true` to include archived folders. Requires the `images` feature.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "business_id": {
+                "type": "string",
+                "description": "business ID (optional for app tokens; defaults to the token's business)"
+              },
+              "include_archived": {
+                "type": "boolean",
+                "description": "Include archived folders"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "parent_folder_id": {
+                "type": "string",
+                "description": "Parent folder ID (omit for the root level)"
+              }
+            }
+          }
+        },
+        {
+          "name": "listImages",
+          "description": "Lists a business's images (newest first). Filter by `folder_id` (pass `unfiled` for images in no folder), `source`, `access`, `badge`, `hashtag`, `archived` and `published`. Requires the `images` feature.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "access": {
+                "type": "string",
+                "description": "Filter by access level (public, private, unlisted)"
+              },
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "archived": {
+                "type": "boolean",
+                "description": "Filter by archived state"
+              },
+              "badge": {
+                "type": "string",
+                "description": "Filter by badge (e.g. ad)"
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "business_id": {
+                "type": "string",
+                "description": "business ID (optional for app tokens; defaults to the token's business)"
+              },
+              "folder_id": {
+                "type": "string",
+                "description": "Folder ID, or \"unfiled\" for images with no folder"
+              },
+              "hashtag": {
+                "type": "string",
+                "description": "Filter to images carrying this hashtag"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "published": {
+                "type": "boolean",
+                "description": "Filter by published state"
+              },
+              "source": {
+                "type": "string",
+                "description": "Filter by source (social_media, aigc, api)"
+              }
+            }
+          }
+        },
+        {
+          "name": "listLiveStreamAttributedOrders",
+          "description": "Returns fixed last touch orders where `conversion_days < 7`, ordered ascending by source interaction date, livestream status, and host order ID, with a unique internal tie breaker. The report date is the source interaction date for both active and replay orders, so an active order can differ from its broadcast date. Results include only completed UTC days and recent dates can change as later purchases arrive within the attribution window. Pagination does not provide a snapshot across data refreshes; restart from the first page after a refresh.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "live_stream_id"
+            ],
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page"
+              },
+              "country": {
+                "type": "string",
+                "description": "Exact country code"
+              },
+              "from": {
+                "type": "string",
+                "format": "date",
+                "description": "Inclusive report date start"
+              },
+              "live_stream_id": {
+                "type": "string",
+                "description": "livestream ID"
+              },
+              "live_stream_status": {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "replay"
+                ],
+                "description": "Filter to active or replay"
+              },
+              "page_size": {
+                "default": 50,
+                "maximum": 100,
+                "type": "integer",
+                "description": "Page size (default 50, values above 100 are clamped)",
+                "minimum": 1
+              },
+              "to": {
+                "type": "string",
+                "format": "date",
+                "description": "Inclusive report date end"
+              }
+            }
+          }
+        },
+        {
+          "name": "listLiveStreamChatMessages",
+          "description": "Accepts OAuth app tokens or OAuth user tokens. User access follows business membership and allowed channels; CMS session tokens are rejected. Returns public chats, private chats, moderator messages, and AI replies from Insights, including test livestreams and messages with null text or IDs. Moderator sender IDs are SecretId encoded; invalid or out of range moderator identifiers and AI sender IDs are null. Viewer pixel IDs remain unchanged. Ordered ascending by UTC server receipt time, with an internal tie breaker. Source message IDs are not unique. Preserves idle and paused statuses. There are no date filters or API date cutoff; availability depends on completed forwarding and historical loading. Pagination is not a snapshot across refreshes. A cursor whose anchor was replaced returns 400; restart from the first page after a refresh. To compare with total_chats, count viewer public and private messages, excluding AI and moderators, with matching source dates, statuses, and refresh timing.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "live_stream_id"
+            ],
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque continuation cursor; invalidated if its source anchor is replaced"
+              },
+              "live_stream_id": {
+                "type": "string",
+                "description": "livestream ID"
+              },
+              "live_stream_status": {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "replay",
+                  "idle",
+                  "paused"
+                ],
+                "description": "Exact source status; omit for all"
+              },
+              "page_size": {
+                "default": 50,
+                "maximum": 100,
+                "type": "integer",
+                "description": "Page size, clamped to 1 through 100",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "name": "listLiveStreamMessages",
+          "description": "Cursor-paginated approved public viewer comments for active livestreams and replays. Active livestreams support forward polling with `after`/`since`, defaulting to the last 30 seconds. At the live edge, `pagination.has_more` is false but `links.next` remains available; wait between polls. Backward paging is only available for replays. Replays support `after`/`before` cursors or seeking by `since`/`until` (elapsed-time/value window), with `links.next` becoming null when paging reaches the end.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "id": {
+                "type": "string",
+                "description": "livestream ID"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "since": {
+                "type": "string",
+                "description": "Start of an elapsed-time/value window"
+              },
+              "until": {
+                "type": "string",
+                "description": "End of an elapsed-time/value window"
+              }
+            }
+          }
+        },
+        {
+          "name": "listLiveStreamPlaylistVideos",
+          "description": "List videos of a livestream playlist",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "playlist_id"
+            ],
+            "properties": {
+              "archived": {
+                "type": "boolean",
+                "description": "Archived filter: omitted or false returns only non-archived livestreams; true returns only archived ones"
+              },
+              "page": {
+                "type": "integer",
+                "description": "Page number (default 1)"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "playlist_id": {
+                "type": "string",
+                "description": "playlist ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "listLiveStreamProducts",
+          "description": "Returns the complete, unpaginated snapshot of products configured for the livestream, including selected variants and configured deals. Supported Public API and CMS configuration paths accept at most 100 and 200 product-listing entries per livestream, respectively.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "livestream ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "listLiveStreams",
+          "description": "Lists primary, non-showroom livestreams for a channel. Use the returned `id` values as `live_stream_id` inputs to the livestream reporting stats endpoint.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "channel_id"
+            ],
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "archived": {
+                "type": "boolean",
+                "description": "Archived filter: omitted or false returns only non-archived livestreams; true returns only archived ones"
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "channel_id": {
+                "type": "string",
+                "description": "channel ID"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "statuses": {
+                "type": "string",
+                "description": "Comma-separated status filter, e.g. \"active,replay\""
+              }
+            }
+          }
+        },
+        {
+          "name": "listPlaylistVideoViews",
+          "description": "Returns the playlist's videos in the same order and pagination as the embed playlist feed, each with active and replay view counts. Non-livestream items and videos with no reporting data return zero views and a null live_stream_id. Note: this is a temporary wrapper over the reporting data and is expected to be deprecated once view metrics are available directly in the embed API.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "playlist_id"
+            ],
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "playlist_id": {
+                "type": "string",
+                "description": "playlist ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "listPlaylistVideos",
+          "description": "List a playlist's videos",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "archived": {
+                "type": "boolean",
+                "description": "Archived filter: omitted or false returns only non-archived videos; true returns only archived ones"
+              },
+              "fields": {
+                "type": "string",
+                "description": "Comma-separated subset of response fields to return, e.g. `id,caption,duration`. `id` is always included. Use it to cut response size on list calls. Valid fields: id, access, audio_disabled, caption, content_generation_type, description, duration, hashtags, archived_at, published_at, is_published, action_type, action_type_translation, action_url, action_custom_label, product_ids, variant_ids, custom_fields, display_social_attributions, external_media, thumbnail_url, watch_url, video_posters."
+              },
+              "id": {
+                "type": "string",
+                "description": "playlist ID"
+              },
+              "page": {
+                "type": "integer",
+                "description": "Page number (default 1)"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              }
+            }
+          }
+        },
+        {
+          "name": "listPlaylists",
+          "description": "Lists a channel's playlists. `channel_id` is optional for a token whose business has a single channel; otherwise it is required.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "archived": {
+                "type": "boolean",
+                "description": "Archived filter: omitted or false returns only non-archived playlists; true returns only archived ones"
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "channel_id": {
+                "type": "string",
+                "description": "channel ID (optional; defaults to the business's sole channel)"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "q": {
+                "type": "string",
+                "description": "Search filter: case-insensitive substring match on the playlist name. Use this to find a specific playlist instead of paging the channel."
+              }
+            }
+          }
+        },
+        {
+          "name": "listProductImages",
+          "description": "Reverse lookup: the business's library images that list this product, ordered by each listing's image_sort_position (unranked last). Listings hidden via image_hidden and archived/deleted images are excluded; unpublished images are excluded unless `include_unpublished=true`. Requires the `images` feature.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "product_id"
+            ],
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "include_unpublished": {
+                "type": "boolean",
+                "description": "Include unpublished/scheduled images"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "product_id": {
+                "type": "string",
+                "description": "product ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "listProductVideos",
+          "description": "List videos featuring a product",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "product_id",
+              "channel_id"
+            ],
+            "properties": {
+              "accesses": {
+                "type": "string",
+                "description": "Comma-separated access filter, e.g. \"public,private\""
+              },
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "archived": {
+                "type": "boolean",
+                "description": "Archived filter: omitted or false returns only non-archived videos; true returns only archived ones"
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "business_store_id": {
+                "type": "string",
+                "description": "business store ID; defaults to the first store"
+              },
+              "channel_id": {
+                "type": "string",
+                "description": "channel ID"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "product_id": {
+                "type": "string",
+                "description": "product ID, or a product/unit identifier within the store: external_id, SKU, GTIN, MPN, or barcode"
+              }
+            }
+          }
+        },
+        {
+          "name": "listProducts",
+          "description": "List or search products in a store",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "business_store_id"
+            ],
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "brand": {
+                "type": "string",
+                "description": "Filter to products with this brand (case-insensitive exact match); omit to not filter by brand"
+              },
+              "business_store_id": {
+                "type": "string",
+                "description": "business store ID"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "search": {
+                "type": "string",
+                "description": "Full-text search term (omit to list all)"
+              }
+            }
+          }
+        },
+        {
+          "name": "listVideoAudioDescriptions",
+          "description": "Lists the video's Audio Descriptions in every status (processing, ready and failed), newest first. Cursor-paginated; follow `links.next`.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "id": {
+                "type": "string",
+                "description": "video ID"
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              }
+            }
+          }
+        },
+        {
+          "name": "listVideoProductMatches",
+          "description": "Returns the scored product recommendations produced by matchVideoProducts, sorted by score (best first), plus a job-level status: `none` (matching never requested), `in_progress`, `completed`, or `failed`. No subscription feature is required to read matches.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "video ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "listVideos",
+          "description": "Lists a channel's videos. `channel_id` is optional for an app token whose business has a single channel; otherwise it is required. The pagination object includes `total_entries`, the exact number of videos matching the current filters.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "access": {
+                "type": "string",
+                "description": "Filter by access level (public, private, unlisted)"
+              },
+              "after": {
+                "type": "string",
+                "description": "Opaque cursor for the next page (from `pagination.cursor` or `links.next`); ascending order."
+              },
+              "archived": {
+                "type": "boolean",
+                "description": "Archived filter: omitted or false returns only non-archived videos; true returns only archived ones"
+              },
+              "before": {
+                "type": "string",
+                "description": "Opaque cursor for the previous page; descending order."
+              },
+              "channel_id": {
+                "type": "string",
+                "description": "channel ID (optional; defaults to the business's sole channel)"
+              },
+              "fields": {
+                "type": "string",
+                "description": "Comma-separated subset of response fields to return, e.g. `id,caption,duration`. `id` is always included. Use it to cut response size on list calls. Valid fields: id, access, audio_disabled, caption, content_generation_type, description, duration, hashtags, archived_at, published_at, is_published, action_type, action_type_translation, action_url, action_custom_label, product_ids, variant_ids, custom_fields, display_social_attributions, external_media, thumbnail_url, watch_url, video_posters."
+              },
+              "hashtag": {
+                "type": "string",
+                "description": "Filter by an exact, case-insensitive hashtag. A leading `#` is significant; use the value returned in a video's `hashtags` array."
+              },
+              "page_size": {
+                "type": "integer",
+                "description": "Page size (default 10, max 100)"
+              },
+              "published": {
+                "type": "boolean",
+                "description": "Filter by published state"
+              },
+              "q": {
+                "type": "string",
+                "description": "Search filter: case-insensitive substring match on the video caption. Use this to find a specific video instead of paging the whole channel."
+              },
+              "status": {
+                "type": "string",
+                "description": "Filter by status"
+              },
+              "video_type": {
+                "type": "string",
+                "description": "Filter by video type (e.g. live_stream)"
+              }
+            }
+          }
+        },
+        {
+          "name": "showBusinessStore",
+          "description": "Get a business store",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "business store ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "showImage",
+          "description": "Get a library image",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "image ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "showImageFolder",
+          "description": "Get an image folder",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "folder ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "showLiveStream",
+          "description": "Get a livestream",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "livestream ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "showLiveStreamInsights",
+          "description": "Get insights for a livestream",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "live_stream_id"
+            ],
+            "properties": {
+              "live_stream_id": {
+                "type": "string",
+                "description": "livestream ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "showLiveStreamMinutelyStats",
+          "description": "Returns shared livestream metadata and the complete sparse `minutes` series in ascending elapsed minute order. Only source minutes 1 through 1500 are returned; missing minutes are omitted. There is no pagination. Includes test livestreams and source minutes after the recorded event end. Reads offline V3 broadcast metrics for broadcasts whose UTC start date is through yesterday, including active and paused activity; replay is excluded. The cutoff uses broadcast start date, not completion time. The source refresh is scheduled hourly; processing delays and later refreshes can change results. Unknown numeric source values remain null. Viewer counts use distinct visitors observed within a minute, with the source taking the maximum across event date and status groups; the series maximum can exceed the main API's peak concurrent viewer count. Minutely engagement sums can also differ from the main report. Highlighted product clicks are included in product clicks and must not be added to them. Requires owning business access and the live_events feature. livestreams:write and api:admin also satisfy the livestreams:read scope requirement. Shared business or feature access failures return 401. Missing authentication can return an empty 401 response. A valid livestream without eligible data returns 200 with an empty minutes array. Both minute bounds must be integers from 1 through 1500 with from_minute less than or equal to to_minute; invalid bounds return 400. Minute filters do not filter metadata.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "live_stream_id"
+            ],
+            "properties": {
+              "from_minute": {
+                "default": 1,
+                "maximum": 1500,
+                "type": "integer",
+                "description": "Inclusive first elapsed minute",
+                "minimum": 1
+              },
+              "live_stream_id": {
+                "type": "string",
+                "description": "livestream ID"
+              },
+              "to_minute": {
+                "maximum": 1500,
+                "type": "integer",
+                "description": "Inclusive last elapsed minute; omitted returns all available minutes within the cap",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "name": "showLiveStreamReportingStats",
+          "description": "Consolidated stats for a livestream: `meta` (identity), `live` (the active broadcast's metrics, or null), and `replay` (per-day replay metrics). `from`/`to` (ISO dates) bound only the replay array.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "live_stream_id"
+            ],
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "Replay-window start (ISO date, e.g. 2026-01-31)"
+              },
+              "live_stream_id": {
+                "type": "string",
+                "description": "livestream ID"
+              },
+              "to": {
+                "type": "string",
+                "description": "Replay-window end (ISO date)"
+              }
+            }
+          }
+        },
+        {
+          "name": "showProduct",
+          "description": "Fetches a product by ID or by another identifier (external_id, SKU, GTIN, MPN, or barcode). Non-ID identifiers resolve within a store, so they need `business_store_id` unless the token resolves to a single store.",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "business_store_id": {
+                "type": "string",
+                "description": "business store ID; used to resolve non-ID identifiers \u2014 defaults to the business's only store and is required when it has several (may be omitted when addressing by ID; when supplied, it must match the product\u2019s store)"
+              },
+              "id": {
+                "type": "string",
+                "description": "product ID, or a product/unit identifier within the store: external_id, SKU, GTIN, MPN, or barcode"
+              }
+            }
+          }
+        },
+        {
+          "name": "showProductUnit",
+          "description": "Get a product unit",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "product_id",
+              "id"
+            ],
+            "properties": {
+              "business_store_id": {
+                "type": "string",
+                "description": "business store ID; used to resolve non-ID identifiers \u2014 defaults to the business's only store and is required when it has several (may be omitted when addressing by ID; when supplied, it must match the product\u2019s store)"
+              },
+              "id": {
+                "type": "string",
+                "description": "product unit ID, or a unit identifier within the store: external_id, SKU, GTIN, or MPN"
+              },
+              "product_id": {
+                "type": "string",
+                "description": "product ID, or a product/unit identifier within the store: external_id, SKU, GTIN, MPN, or barcode"
+              }
+            }
+          }
+        },
+        {
+          "name": "showVideo",
+          "description": "Get a video",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "fields": {
+                "type": "string",
+                "description": "Comma-separated subset of response fields to return, e.g. `id,caption,duration`. `id` is always included. Use it to cut response size on list calls. Valid fields: id, access, audio_disabled, caption, content_generation_type, description, duration, hashtags, archived_at, published_at, is_published, action_type, action_type_translation, action_url, action_custom_label, product_ids, variant_ids, custom_fields, display_social_attributions, external_media, thumbnail_url, watch_url, video_posters."
+              },
+              "id": {
+                "type": "string",
+                "description": "video ID"
+              }
+            }
+          }
+        },
+        {
+          "name": "showVideoImport",
+          "description": "Get the status of an asynchronous video import",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "import job ID returned when creating"
+              }
+            }
+          }
+        },
+        {
+          "name": "showVideoInsights",
+          "description": "Get insights for a video",
+          "annotations": {
+            "readOnlyHint": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "video_id"
+            ],
+            "properties": {
+              "video_id": {
+                "type": "string",
+                "description": "video ID"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "jsonrpc": "2.0"
+  }
+}
