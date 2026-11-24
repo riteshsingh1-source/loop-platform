@@ -9,8 +9,8 @@
     .top{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:center}.badge{background:#e83a4e;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.06em}.badge.replay{background:#ffffff24}.top button,.round{width:40px;height:40px;border-radius:50%;background:#1119;backdrop-filter:blur(12px);font-size:19px}
     .center{position:absolute;inset:40% 0 auto;display:flex;justify-content:center}.play{width:64px;height:64px;border-radius:50%;background:#fff;color:#111;font-size:23px;box-shadow:0 4px 28px #0006}
     .meta{position:absolute;left:16px;right:16px;bottom:70px}.host{font-size:12px;color:#eee}.title{font-weight:750;font-size:20px;line-height:1.2;margin:5px 0 12px;text-shadow:0 2px 10px #000}.product{display:flex;align-items:center;gap:11px;background:#fffffff0;color:#17191a;border-radius:13px;padding:9px 10px;max-width:310px;box-shadow:0 5px 24px #0003}.swatch{width:44px;height:48px;border-radius:8px;background:linear-gradient(145deg,#d5c2a2,#63765f 55%,#262e2a)}.product-info{flex:1;min-width:0}.product-name{font-size:12px;font-weight:700}.price{font-size:11px;color:#64696b;margin-top:2px}.shop{border-radius:9px;background:#151819;color:white;padding:10px 13px;font-size:11px;font-weight:700;white-space:nowrap}
-    .controls{position:absolute;bottom:0;left:0;right:0;padding:9px 14px 13px;background:linear-gradient(transparent,#0009);transition:opacity .18s}.is-playing:not(:focus-within):not(:hover) .controls.is-hidden{opacity:0;pointer-events:none}.scrub{width:100%;height:18px;accent-color:var(--accent);cursor:pointer}.control-row{display:flex;align-items:center;justify-content:space-between;gap:6px}.group{display:flex;align-items:center;gap:5px}.control-row button{min-width:40px;min-height:40px;background:transparent;border-radius:50%;font-size:18px}.time{font-size:11px;font-variant-numeric:tabular-nums;color:#eee}.error{position:absolute;inset:auto 12px 85px;background:#241a1b;padding:10px;border-radius:9px;font-size:12px}.resume{display:none;position:absolute;inset:auto 12px 82px;padding:12px;background:#fff;color:#111;border-radius:10px;font-weight:700}.status{position:absolute;top:50%;left:50%;z-index:5;transform:translate(-50%,-50%);padding:10px 14px;border-radius:10px;background:#101311dd;font-size:12px}.status[hidden]{display:none}.pip-host{position:fixed;z-index:2147483000;right:max(16px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));width:min(220px,42vw);aspect-ratio:9/16;max-height:42vh;border-radius:16px;overflow:hidden;background:#08090a;box-shadow:0 12px 48px #0008;touch-action:none}.pip-host loop-player{width:100%;height:100%;aspect-ratio:auto;min-width:0;max-width:none;border-radius:inherit}.pip-host .pip-drag{position:absolute;left:0;right:80px;top:0;height:42px;cursor:grab;z-index:4}.pip-host .meta{bottom:56px;left:9px;right:9px}.pip-host .title{font-size:13px}.pip-host .host,.pip-host .product,.pip-host .scrub,.pip-host .control-row .time,.pip-host .side-panel,.pip-host .sound-prompt{display:none}.pip-host .controls{padding:2px 7px 7px}.pip-host .control-row button{min-width:36px;min-height:36px}.pip-host .top{top:6px;left:7px;right:7px}.pip-host .top button{width:34px;height:34px}.pip-host .center{inset:37% 0 auto}.pip-host .play{width:48px;height:48px}.pip-host .round.full{display:none}
-    .stage{position:absolute;inset:0;display:block;padding:0;background:#08090a}.side-panel{display:none;min-width:0;height:min(76vh,680px);background:#1b201e;border:1px solid #ffffff12;border-radius:18px;padding:18px;overflow:auto}.chat-panel[hidden]{display:none!important}.side-panel h2{font-size:14px;margin:0 0 14px}.chat-line{padding:10px 0;border-bottom:1px solid #ffffff12;color:#ddd;font-size:13px}.chat-form{display:flex;gap:6px;margin-top:14px}.chat-form input{min-width:0;width:100%;background:#101311;border:1px solid #ffffff22;color:#fff;border-radius:9px;padding:11px}.chat-form button{background:#ff3d57;border-radius:9px;padding:0 13px}.product-row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #ffffff14}.product-thumb{flex:none;width:48px;height:56px;border-radius:8px;background:linear-gradient(145deg,#d5c2a2,#63765f 55%,#262e2a)}.product-link{display:inline-block;margin-top:5px;color:#c6e4d2;font-size:12px;text-decoration:underline}.pin{font-size:10px;color:#ff8494;margin-top:4px}.screen{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;max-width:none;border-radius:inherit;overflow:hidden;background:#08090a}.stage .meta{bottom:76px}.stage .title{font-size:16px}.stage .product{max-width:100%}.sound-prompt{position:absolute;top:58px;left:50%;transform:translateX(-50%);z-index:3;white-space:nowrap;border-radius:99px;background:#111c;padding:9px 13px;font-size:11px}:host(.is-playing) .center,:host(.is-playing) .sound-prompt{display:none}:host(.is-paused) .center{display:flex}:host([data-expanded]){position:fixed;z-index:2147482000;inset:0;width:100vw;height:100dvh;max-width:none;aspect-ratio:auto;border-radius:0}:host(.is-expanded) .stage{inset:0;width:100%;height:100%;display:grid;grid-template-columns:minmax(240px,1fr) minmax(280px,420px) minmax(240px,1fr);gap:clamp(16px,2.5vw,40px);padding:clamp(16px,3vw,48px);background:#101311}:host(.is-expanded) .side-panel{display:block;width:100%;max-width:420px;height:min(82dvh,780px);justify-self:center}:host(.is-expanded) .chat-panel[hidden]{display:none!important}:host(.is-expanded) .screen{position:relative;inset:auto;height:min(86dvh,900px);width:auto;aspect-ratio:9/16;max-width:440px;border-radius:18px}:host(.is-expanded) .meta{bottom:72px}:host(.is-expanded) .product{display:none}:host(.is-expanded) .sound-prompt{display:none}:host([data-floating]) .stage{display:block;inset:0;width:100%;height:100%;padding:0;background:transparent}:host([data-floating]) .screen{position:absolute;inset:0;width:100%;height:100%;max-width:none;aspect-ratio:auto;border-radius:inherit}:host([data-floating]) .side-panel,:host([data-floating]) .product{display:none}:host([data-floating]) .meta{bottom:51px;left:9px;right:9px}:host([data-floating]) .title{font-size:13px}:host([data-floating]) .host,:host([data-floating]) .scrub,:host([data-floating]) .time,:host([data-floating]) .sound-prompt{display:none}:host([data-floating]) .controls{padding:2px 7px 7px}:host([data-floating]) .control-row button{min-width:36px;min-height:36px}:host([data-floating]) .top{top:4px;left:7px;right:7px}:host([data-floating]) .top button{width:34px;height:34px}:host([data-floating]) .center{inset:37% 0 auto}:host([data-floating]) .play{width:48px;height:48px}:host([data-floating]) .full{display:none}
+    .controls{position:absolute;bottom:0;left:0;right:0;padding:9px 14px 13px;background:linear-gradient(transparent,#0009);transition:opacity .18s}.is-playing:not(:focus-within):not(:hover) .controls.is-hidden{opacity:0;pointer-events:none}.scrub{width:100%;height:18px;accent-color:var(--accent);cursor:pointer}.control-row{display:flex;align-items:center;justify-content:space-between;gap:6px}.group{display:flex;align-items:center;gap:5px}.control-row button{min-width:40px;min-height:40px;background:transparent;border-radius:50%;font-size:18px}.time{font-size:11px;font-variant-numeric:tabular-nums;color:#eee}.error{position:absolute;inset:auto 12px 85px;background:#241a1b;padding:10px;border-radius:9px;font-size:12px}.resume{display:none;position:absolute;inset:auto 12px 82px;padding:12px;background:#fff;color:#111;border-radius:10px;font-weight:700}.status{position:absolute;top:50%;left:50%;z-index:5;transform:translate(-50%,-50%);padding:10px 14px;border-radius:10px;background:#101311dd;font-size:12px}.status[hidden]{display:none}.pip-host{position:fixed;z-index:2147483000;right:max(16px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));width:min(220px,42vw);aspect-ratio:9/16;max-height:42vh;border-radius:16px;overflow:hidden;background:#08090a;box-shadow:0 12px 48px #0008;touch-action:none}.pip-host loop-player{width:100%;height:100%;aspect-ratio:auto;min-width:0;max-width:none;border-radius:inherit}.pip-host .pip-drag{position:absolute;left:0;right:80px;top:0;height:42px;cursor:grab;z-index:4}.pip-host .meta{bottom:56px;left:9px;right:9px}.pip-host .title{font-size:13px}.pip-host .host,.pip-host .product,.pip-host .scrub,.pip-host .control-row .time,.pip-host .side-panel,.pip-host .sound-prompt{display:none}.pip-host .controls{padding:2px 7px 7px}.pip-host .control-row button{min-width:36px;min-height:36px}.pip-host .top{top:6px;left:7px;right:7px}.pip-host .top button{width:34px;height:34px}.pip-host .center{inset:37% 0 auto}.pip-host .play{width:48px;height:48px}.pip-host .heart,.pip-host .share{display:none}
+    .stage{position:absolute;inset:0;display:block;padding:0;background:#08090a}.side-panel{display:none;min-width:0;height:min(76vh,680px);background:#1b201e;border:1px solid #ffffff12;border-radius:18px;padding:18px;overflow:auto}.chat-panel[hidden]{display:none!important}.side-panel h2{font-size:14px;margin:0 0 14px}.chat-line{padding:10px 0;border-bottom:1px solid #ffffff12;color:#ddd;font-size:13px}.chat-form{display:flex;gap:6px;margin-top:14px}.chat-form input{min-width:0;width:100%;background:#101311;border:1px solid #ffffff22;color:#fff;border-radius:9px;padding:11px}.chat-form button{background:#ff3d57;border-radius:9px;padding:0 13px}.product-row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #ffffff14}.product-thumb{flex:none;width:48px;height:56px;border-radius:8px;background:linear-gradient(145deg,#d5c2a2,#63765f 55%,#262e2a)}.product-link{display:inline-block;margin-top:5px;color:#c6e4d2;font-size:12px;text-decoration:underline}.pin{font-size:10px;color:#ff8494;margin-top:4px}.screen{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;max-width:none;border-radius:inherit;overflow:hidden;background:#08090a}.stage .meta{bottom:76px}.stage .title{font-size:16px}.stage .product{max-width:100%}.sound-prompt{position:absolute;top:58px;left:50%;transform:translateX(-50%);z-index:3;white-space:nowrap;border-radius:99px;background:#111c;padding:9px 13px;font-size:11px}:host(.is-playing) .center,:host(.is-playing) .sound-prompt{display:none}:host(.is-paused) .center{display:flex}:host([data-expanded]){position:fixed;z-index:2147482000;inset:0;width:100vw;height:100dvh;max-width:none;aspect-ratio:auto;border-radius:0}:host(.is-expanded) .stage{inset:0;width:100%;height:100%;display:grid;grid-template-columns:minmax(240px,1fr) minmax(280px,420px) minmax(240px,1fr);gap:clamp(16px,2.5vw,40px);padding:clamp(16px,3vw,48px);background:#101311}:host(.is-expanded) .side-panel{display:block;width:100%;max-width:420px;height:min(82dvh,780px);justify-self:center}:host(.is-expanded) .chat-panel[hidden]{display:none!important}:host(.is-expanded) .screen{position:relative;inset:auto;height:min(86dvh,900px);width:auto;aspect-ratio:9/16;max-width:440px;border-radius:18px}:host(.is-expanded) .meta{bottom:72px}:host(.is-expanded) .product{display:none}:host(.is-expanded) .sound-prompt{display:none}:host([data-floating]) .stage{display:block;inset:0;width:100%;height:100%;padding:0;background:transparent}:host([data-floating]) .screen{position:absolute;inset:0;width:100%;height:100%;max-width:none;aspect-ratio:auto;border-radius:inherit}:host([data-floating]) .side-panel,:host([data-floating]) .product{display:none}:host([data-floating]) .meta{bottom:51px;left:9px;right:9px}:host([data-floating]) .title{font-size:13px}:host([data-floating]) .host,:host([data-floating]) .scrub,:host([data-floating]) .time,:host([data-floating]) .sound-prompt{display:none}:host([data-floating]) .controls{padding:2px 7px 7px}:host([data-floating]) .control-row button{min-width:36px;min-height:36px}:host([data-floating]) .top{top:4px;left:7px;right:7px}:host([data-floating]) .top button{width:34px;height:34px}:host([data-floating]) .center{inset:37% 0 auto}:host([data-floating]) .play{width:48px;height:48px}
     :host([data-floating]){aspect-ratio:auto;width:100%;height:100%;min-width:0;max-width:none;border-radius:inherit}@media(max-width:760px){:host(.is-expanded) .stage{display:block;padding:0}:host(.is-expanded) .screen{position:absolute;inset:0;height:100%;max-height:none;width:100%;aspect-ratio:auto;border-radius:0}:host(.is-expanded) .side-panel{position:absolute;z-index:6;left:12px;right:12px;bottom:12px;width:calc(100% - 24px);max-width:none;justify-self:stretch;height:min(38dvh,320px);border-radius:18px 18px 12px 12px;background:#171b19f5;backdrop-filter:blur(18px)}:host(.is-expanded) .chat-panel:not([hidden]){display:block}:host(.is-expanded) .product-panel{display:block;top:12px;bottom:auto;height:min(30dvh,260px)}:host{border-radius:0}}@media(max-width:480px){:host{border-radius:0}.title{font-size:18px}}
   </style><div class="stage"><aside class="side-panel chat-panel"><h2>Live chat <span class="chat-count">2.4K</span></h2><div class="chat-messages"><div class="chat-line">✨ This is so beautiful!</div><div class="chat-line">Where can I get the blue one?</div><div class="chat-line">Love the details on this piece</div></div><form class="chat-form"><input aria-label="Write a chat message" placeholder="Say something kind…"><button type="submit" aria-label="Send message">➤</button></form></aside><div class="screen"><video class="video" playsinline preload="metadata"></video><div class="shade"></div><div class="top"><span class="badge">● LIVE</span><button class="close" aria-label="Close player" title="Close">×</button></div><div class="sound-prompt">Tap to watch with sound</div><div class="status" hidden></div><div class="center"><button class="play" aria-label="Play">▶</button></div><div class="meta"><div class="host"></div><div class="title"></div><div class="product"><div class="swatch"></div><div class="product-info"><div class="product-name">Featured pick</div><div class="price">Discover this moment</div><div class="pin"></div></div><button class="shop">Shop now ↗</button></div></div><div class="resume">Tap to resume</div><div class="controls"><input class="scrub" aria-label="Video timeline" type="range" min="0" max="1000" value="0"><div class="control-row"><div class="group"><button class="toggle" aria-label="Pause">Ⅱ</button><button class="mute" aria-label="Unmute">◖</button><span class="time">0:00 / 0:00</span><span class="live-offset" hidden></span></div><div class="group"><button class="speed" aria-label="Playback speed" hidden>1×</button><button class="heart" aria-label="Like video">♡</button><button class="share" aria-label="Share video">↗</button><button class="pip" aria-label="Minimize player">▣</button><button class="full" aria-label="Enter immersive fullscreen">⛶</button></div></div></div></div><aside class="side-panel product-panel"><h2>Featured products</h2><div class="product-list"></div></aside></div>`;
 
@@ -29,11 +29,7 @@
       if (this.bound) return;
       this.bound = true;
       const source = this.getAttribute("src") || "";
-      if (
-        /\.m3u8(?:$|\?)/i.test(source) &&
-        !this.video.canPlayType("application/vnd.apple.mpegurl") &&
-        globalThis.Hls?.isSupported()
-      ) {
+      if (/\.m3u8(?:$|\?)/i.test(source) && globalThis.Hls?.isSupported()) {
         this.hls = new globalThis.Hls();
         this.hls.loadSource(source);
         this.hls.attachMedia(this.video);
@@ -170,7 +166,6 @@
       this.video.addEventListener("timeupdate", () => {
         this.paintTime();
         this.syncTimedCue();
-        this.updateLiveOffset();
       });
       this.video.addEventListener("durationchange", () => this.paintTime());
       this.video.addEventListener("volumechange", () => this.syncMute());
@@ -264,18 +259,24 @@
       this.shadowRoot.querySelector(".speed").textContent = `${next}×`;
       this.emit("playback-speed", { rate: next });
     }
-    updateLiveOffset() {
-      if (!this.isLive || !this.video.seekable.length) return;
-      const end = this.video.seekable.end(this.video.seekable.length - 1);
-      const offset = Math.max(0, end - this.video.currentTime);
-      this.liveOffset = offset;
-      const indicator = this.shadowRoot.querySelector(".live-offset");
-      indicator.hidden = offset <= 3;
-      indicator.textContent =
-        offset > 3 ? `−${Math.floor(offset)}s behind` : "";
+    seekToLiveEdge() {
+      const ranges = this.video.seekable;
+      if (!this.isLive || !ranges.length) return;
+      const last = ranges.length - 1;
+      const start = ranges.start(last);
+      const end = ranges.end(last);
+      const syncPosition = this.hls?.liveSyncPosition;
+      const target = Number.isFinite(syncPosition) && syncPosition >= start && syncPosition <= end
+        ? syncPosition
+        : Math.max(start, end - 1);
+      if (Math.abs(this.video.currentTime - target) <= 1) return;
+      try {
+        this.video.currentTime = target;
+      } catch {}
     }
     async play() {
       try {
+        if (this.video.paused && this.isLive) this.seekToLiveEdge();
         await this.video.play();
         this.shadowRoot.querySelector(".resume").style.display = "none";
         return this;
@@ -424,6 +425,7 @@
       }
     }
     async fullscreen() {
+      if (this.hasAttribute("data-floating")) api.restore();
       this.setAttribute("data-expanded", "");
       this.classList.add("is-expanded");
       Object.assign(this.style, {
@@ -845,7 +847,7 @@
     }
     const restore = async () => {
       const video = player.video;
-      const savedTime = Number(data.time) || 0;
+      const savedTime = player.isLive ? 0 : Number(data.time) || 0;
       const seekToSavedTime = async () => {
         if (savedTime <= 0 || !Number.isFinite(savedTime)) return;
         const duration = video.duration;
@@ -891,8 +893,8 @@
       await seekToSavedTime();
       player.save();
     };
-    if (player.video.readyState >= 1) restore();
-    else
-      player.video.addEventListener("loadedmetadata", restore, { once: true });
+    // Put the floating player on screen immediately. Live HLS may not emit
+    // loadedmetadata until its first segment arrives, while replay MP4 does.
+    restore();
   });
 })();

@@ -8,6 +8,8 @@
     if (source !== activeSource) {
       const player = document.createElement("loop-player");
       player.setAttribute("src", source);
+      // These demo playback URLs are public and safe to retain for same-tab PiP restore.
+      player.setAttribute("public-src", "");
       player.setAttribute("title", "The art of a slower morning");
       player.setAttribute("host", "LOOP LIVE · Ananya Mehta");
       player.setAttribute("mode", status.live ? "live" : "replay");
