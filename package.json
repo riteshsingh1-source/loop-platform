@@ -10,7 +10,7 @@
     "dev": "npm run dev --workspaces --if-present",
     "dev:player": "node apps/player-demo/server.mjs",
     "dev:connected": "node --env-file-if-exists=.env.local apps/player-demo/server.mjs",
-    "dev:web": "node --env-file-if-exists=.env.local ./node_modules/next/dist/bin/next dev apps/web",
+    "dev:web": "node scripts/dev-web.mjs",
     "build:web": "npm run build --workspace @loop/web",
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present"

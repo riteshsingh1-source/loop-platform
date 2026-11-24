@@ -9,3 +9,4 @@ node_modules/
 .agents/
 /apps/web/public/
 /apps/web/.next/
+/apps/web/AGENTS.md
